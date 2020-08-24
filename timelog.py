@@ -191,7 +191,7 @@ def insert_work(task_id, then, now):
         )
 
     headers = { 'Content-Type': 'text/xml', 'SOAPAction': 'InsertWorkRequest' }
-    response = web.post("https://app1.timelog.com/arnsbomedia/WebServices/ProjectManagement/V1_6/ProjectManagementServiceSecure.svc", data=data, headers=headers)
+    response = web.post("https://app3.timelog.com/designcontainer/WebServices/ProjectManagement/V1_6/ProjectManagementServiceSecure.svc", data=data, headers=headers)
     if response.status_code == 200:
         notify(u'Done! ʕっ•ᴥ•ʔっ', 'Registed ' + str(hours) + ' hours & ' + str(minutes) + ' minutes', 'Pop')
     else:
@@ -206,7 +206,7 @@ def fetch_token(username, password):
         </s:Body></s:Envelope>'''.format(password=password, user=username)
 
 
-    xml = web.post("https://app1.timelog.com/arnsbomedia/WebServices/Security/V1_2/SecurityServiceSecure.svc", data=data, headers=headers).text
+    xml = web.post("https://app3.timelog.com/designcontainer/WebServices/Security/V1_2/SecurityServiceSecure.svc", data=data, headers=headers).text
 
     ns = {
         's': 'http://schemas.xmlsoap.org/soap/envelope/',
@@ -245,7 +245,7 @@ def fetch_tasks():
     '''.format(initials=user.token.initials, expires=user.token.expires, hash=user.token.hash)
 
     headers = { 'Content-Type': 'text/xml', 'SOAPAction': 'GetTasksAllocatedToEmployeeRequest' }
-    xml = web.post("https://app1.timelog.com/arnsbomedia/WebServices/ProjectManagement/V1_6/ProjectManagementServiceSecure.svc", data=data, headers=headers).text
+    xml = web.post("https://app3.timelog.com/designcontainer/WebServices/ProjectManagement/V1_6/ProjectManagementServiceSecure.svc", data=data, headers=headers).text
     foo = xml.encode('utf-8')
 
     ns = {
